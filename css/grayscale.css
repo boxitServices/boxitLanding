@@ -430,7 +430,7 @@ body {
     transition-duration: 0.6s;
     transition-property: all;
     transition-timing-function: ease;
-    width: 1286px;
+    width: 100%;
     z-index: 20;
 }
 
