@@ -148,7 +148,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../assets/sailing-bg2.jpg) no-repeat bottom center scroll;
+    background: url(../assets/images/sailing-bg2.jpg) no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -373,14 +373,29 @@ body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
 }
 
-#econcourse {
+.secondHeader {
     display: table;
     width: 100%;
     height: auto;
-    padding: 100px 0;
+    padding: 80px 0;
     text-align: center;
     color: #fff;
-    background: url(../assets/purpleblue2.jpg) no-repeat bottom center scroll;
+    background: url(../assets/images/purpleblue2.jpg) no-repeat bottom center scroll;
+    background-color: #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.literatureHeader {
+    display: table;
+    width: 100%;
+    height: auto;
+    padding: 40px 0;
+    text-align: center;
+    color: #fff;
+    background: url() no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -391,3 +406,38 @@ body {
 #boxlogo {
     display: inline;
 }
+
+#literatureLink{
+    -webkit-font-smoothing: antialiased;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgb(86, 41, 97);
+    background-image: none;
+    background-origin: padding-box;
+    background-size: auto;
+    bottom: 0px;
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+    display: block;
+    font-family: open_sansregular, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    height: 57px;
+    letter-spacing: -0.340000003576279px;
+    line-height: 27.2000007629395px;
+    position: fixed;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    transition-delay: 0s;
+    transition-duration: 0.6s;
+    transition-property: all;
+    transition-timing-function: ease;
+    width: 1286px;
+    z-index: 20;
+}
+
+a.litText {
+    color: white;
+}
+
+ p.smallP {
+    font-size: small;
+ }

@@ -77,3 +77,9 @@ ul{
 	color: #006666;
 }
 
+.test{
+	width: 100px;
+	height: 100px;
+	background-color: green;
+	/*display: none;*/
+}
