@@ -407,7 +407,7 @@ body {
     -webkit-font-smoothing: antialiased;
     background-attachment: scroll;
     background-clip: border-box;
-    background-color: rgb(86, 41, 97);
+    background-color: rgb(3, 70, 70);
     background-image: none;
     background-origin: padding-box;
     background-size: auto;
@@ -431,6 +431,11 @@ body {
 }
 
 a.litText {
+    color: gray;
+}
+
+/* mouse over link */
+a.litText:hover {
     color: white;
 }
 
