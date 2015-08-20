@@ -1,0 +1,132 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+	
+Stripe.setPublishableKey('YOUR_PUBLISHABLE_KEY');
+
+// Stripe.card.createToken FUNCTION - is this using jQuery?
+	Stripe.card.createToken({
+	  number: $('.card-number').val(),
+	  cvc: $('.card-cvc').val(),
+	  exp_month: $('.card-expiry-month').val(),
+	  exp_year: $('.card-expiry-year').val()
+	}, stripeResponseHandler);
+
+// stripeResponseHandler FUNCTION
+	function stripeResponseHandler(status, response) {
+	  var $form = $('#payment-form');
+
+	  if (response.error) {
+	    // Show the errors on the form
+	    $form.find('.payment-errors').text(response.error.message);
+	    $form.find('button').prop('disabled', false);
+	  } else {
+	    // response contains id and card, which contains additional card details
+	    var token = response.id;
+	    // Insert the token into the form so it gets submitted to the server
+	    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+	    // and submit
+	    $form.get(0).submit();
+	  }
+	}
+
+// response:
+	{
+	  id: "tok_u5dg20Gra", // String of token identifier
+	  card: { // Dictionary of the card used to create the token
+	    name: null,
+	    address_line1: "12 Main Street",
+	    address_line2: "Apt 42",
+	    address_city: "Palo Alto",
+	    address_state: "CA",
+	    address_zip: "94301",
+	    address_country: "US",
+	    country: "US",
+	    exp_month: 2,
+	    exp_year: 2016,
+	    last4: "4242",
+	    object: "card",
+	    brand: "Visa",
+	    funding: "credit"
+	  },
+	  created: 1440005949, // Integer of date token was created
+	  livemode: true, // Boolean of whether this token was created with a live or test API key
+	  type: "card",
+	  object: "token", // String identifier of the type of object, always "token"
+	  used: false // Boolean of whether this token has been used
+	}
+
+// response, if request to Stripe fails:
+	{
+	  error: {
+	    type: "card_error", // String identifier of the type of error
+	    code: "invalid_expiry_year", // Optional string identifier of specific error
+	    message: "Your card's expiration year is invalid.", // String description of the error
+	    param: "exp_year" // Optional string identifier of the offending parameter
+	  }
+	}
+
+//	Client-Side validation helpers
+	/* 
+		The browser helps to validate that the information inputted by the user is legit - and it does it for each of the different fields in the form (aka: cardNumber, expirationDate, CVC, cardType).
+
+		I think this checks for proper form in the inputs, as opposed to actually validating in some database that the card exists, etc.
+
+		This is to assume that there are various layers of validation.
+	*/
+
+	// validatecardNumber
+		// These will all return true, indicating a potentially valid card
+		// number. (Letters, spaces, and other punctuation are ignored.)
+		Stripe.card.validateCardNumber('4242424242424242')
+		Stripe.card.validateCardNumber('4242-42424242-4242')
+		Stripe.card.validateCardNumber('4242 4242 4242 4242')
+		// These invalid card numbers will all return false.
+		Stripe.card.validateCardNumber('4242-1111-1111-1111')
+		// (Doesn't pass the Luhn check.)
+		Stripe.card.validateCardNumber('12345678')
+		Stripe.card.validateCardNumber('mistake')
+
+	// validateExpiry
+		Stripe.card.validateExpiry('02', '15')      // false
+		Stripe.card.validateExpiry('02', '10')      // false
+		Stripe.card.validateExpiry('02', '2020')    // true
+		Stripe.card.validateExpiry(2, 2020)         // true
+
+	// validateCVC
+		Stripe.card.validateCVC('123')              // true
+		Stripe.card.validateCVC('')                 // false
+
+	// validatecardType
+		Stripe.card.cardType('4242-4242-4242-4242') // "Visa"
+		Stripe.card.cardType('378282246310005')     // "American Express"
+		Stripe.card.cardType('1234')                // "Unknown"
+
+// Collecting bank account details
+
+	/*
+		createToken converts sensitive bank account data into a single-use token which you can safely pass to your server to send money to the user.
+	*/
+		Stripe.bankAccount.createToken({
+		  country: $('.country').val(),
+		  currency: $('.currency').val(),
+		  routing_number: $('.routing-number').val(),
+		  account_number: $('.account-number').val()
+		}, stripeResponseHandler);
+
+		
+
+
+
+</script>
+
+</body>
+</html>
