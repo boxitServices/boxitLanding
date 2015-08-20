@@ -32,6 +32,9 @@
 
         <!-- jQuery -->
             <script type="text/javascript">
+
+
+
                 // This identifies your website in the createToken call below
                 Stripe.setPublishableKey('YOUR_PUBLISHABLE_KEY');
                 var stripeResponseHandler = function(status, response) {
@@ -49,7 +52,7 @@
                     $form.get(0).submit();
                   }
                 };
-                jQuery(function($) {
+                $(function($) {
                   $('#payment-form').submit(function(event) {
                     var $form = $(this);
                     // Disable the submit button to prevent repeated clicks
@@ -60,6 +63,34 @@
                   });
                 });
             </script>
+
+            <script type="text/javascript">
+                $( document ).ready(function() {
+                    console.log( "ready!" );
+                });
+            </script>
+
+            <script type="text/javascript">
+                //this is not working
+                $(document).on( 'scroll', '#problem', function(){
+                    console.log('Event Fired');
+                });
+            </script>
+
+<!--
+            <script type="text/javascript">
+                $(function(){
+                  $(window).scroll(function(){
+                    var aTop = $('.ad').height();
+                    if($(this).scrollTop()>=aTop){
+                        alert('header just passed.');
+                        // instead of alert you can use to show your ad
+                        // something like $('#footAd').slideup();
+                    }
+                  });
+                });
+            </script>
+-->
 
 
     <!--head.TITLE-->

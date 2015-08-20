@@ -428,6 +428,7 @@ body {
     transition-timing-function: ease;
     width: 100%;
     z-index: 20;
+    visibility: hidden;
 }
 
 a.litText {
