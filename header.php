@@ -1,3 +1,5 @@
+<?php require_once('./config.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,35 +37,41 @@
         <!-- jQuery -->
             <script type="text/javascript">
 
+        // this identifies your website in the createToken call below
+        Stripe.setPublishableKey("<?php echo $stripe['publishable_key']; ?>");
 
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                // re-enable the submit button
+                $('.submit-button').removeAttr("disabled");
+                // show the errors on the form
+                $(".payment-errors").html(response.error.message);
+            } else {
+                var form$ = $("#payment-form");
+                // token contains id, last4, and card type
+                var token = response['id'];
+                // insert the token into the form so it gets submitted to the server
+                form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                        // and submit
+                form$.get(0).submit();
+            }
+        }
 
-                // This identifies your website in the createToken call below
-                Stripe.setPublishableKey('pk_test_lXtA4BSX2EpzmbGMx6jBgoRt');
-                var stripeResponseHandler = function(status, response) {
-                  var $form = $('#payment-form');
-                  if (response.error) {
-                    // Show the errors on the form
-                    $form.find('.payment-errors').text(response.error.message);
-                    $form.find('button').prop('disabled', false);
-                  } else {
-                    // token contains id, last4, and card type
-                    var token = response.id;
-                    // Insert the token into the form so it gets submitted to the server
-                    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-                    // and re-submit
-                    $form.get(0).submit();
-                  }
-                };
-                $(function($) {
-                  $('#payment-form').submit(function(event) {
-                    var $form = $(this);
-                    // Disable the submit button to prevent repeated clicks
-                    $form.find('button').prop('disabled', true);
-                    Stripe.card.createToken($form, stripeResponseHandler);
-                    // Prevent the form from submitting with the default action
-                    return false;
-                  });
-                });
+        $(document).ready(function() {
+            $("#payment-form").submit(function(event) {
+                // disable the submit button to prevent repeated clicks
+                $('.submit-button').attr("disabled", "disabled");
+                // createToken returns immediately - the supplied callback submits the form if there are no errors
+                Stripe.createToken({
+                    number: $('.card-number').val(),
+                    cvc: $('.card-cvc').val(),
+                    exp_month: $('.card-expiry-month').val(),
+                    exp_year: $('.card-expiry-year').val()
+                }, stripeResponseHandler);
+                return false; // submit from callback
+            });
+        });
+
             </script>
 
             <script type="text/javascript">
@@ -78,22 +86,6 @@
                     console.log('Event Fired');
                 });
             </script>
-
-<!--
-            <script type="text/javascript">
-                $(function(){
-                  $(window).scroll(function(){
-                    var aTop = $('.ad').height();
-                    if($(this).scrollTop()>=aTop){
-                        alert('header just passed.');
-                        // instead of alert you can use to show your ad
-                        // something like $('#footAd').slideup();
-                    }
-                  });
-                });
-            </script>
--->
-
 
     <!--head.TITLE-->
     	<title>
@@ -455,14 +447,13 @@
                         <p class="smallP">Secure &amp; organize everything digital.</p>
                         <br/>
                     <!-- STRIPE: $19.99 -->
-                        <form action="" method="POST" id="payment-form">
+                        <form action="/.charge.php" method="POST" id="payment-form">
                           <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
                             data-amount="1999"
                             data-name="Sign up"
                             data-description="BoxIT Start ($19.99)"
-                            data-image="/128x128.png">
                           </script>
                         </form>
 
@@ -483,14 +474,13 @@
                         </p>
                         <br/>
                     <!-- STRIPE: $99.99 -->
-                        <form action="" method="POST" id="payment-form">
+                        <form action="/.charge.php" method="POST" id="payment-form">
                           <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
                             data-amount="9999"
                             data-name="Sign up"
                             data-description="BoxIT Start ($99.99)"
-                            data-image="/128x128.png">
                           </script>
                         </form>
 
