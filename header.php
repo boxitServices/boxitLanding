@@ -160,15 +160,15 @@
                                 <br/>
                                 <a href="#problem" class="page-scroll">
                                 <div>
-                                        <h6>
-                                            Click here to
-                                        </h6>
-                                        <h6>
-                                            Experience it
-                                        </h6>
-                                        <img id="boxlogo" src="assets/images/box.png" alt="box" height="50px" width="auto">
-                                        <br/>
-                                        <span class="glyphicon glyphicon-chevron-down animated"></span>
+                                    <h6>
+                                        Click here to
+                                    </h6>
+                                    <h6>
+                                        Experience it
+                                    </h6>
+                                    <img id="boxlogo" src="assets/images/box.png" alt="box" height="50px" width="auto">
+                                    <br/>
+                                    <span class="glyphicon glyphicon-chevron-down animated"></span>
                                 </div>
                                 </a>
                             </div>
@@ -447,7 +447,8 @@
                         <p class="smallP">Secure &amp; organize everything digital.</p>
                         <br/>
                     <!-- STRIPE: $19.99 -->
-                        <form action="/.charge.php" method="POST" id="payment-form">
+                        <span class="payment-errors"></span>
+                        <form id="payment-form" action="charge.php" method="post" >
                           <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
@@ -474,7 +475,7 @@
                         </p>
                         <br/>
                     <!-- STRIPE: $99.99 -->
-                        <form action="/.charge.php" method="POST" id="payment-form">
+                        <form action="charge.php" method="post" id="payment-form">
                           <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
