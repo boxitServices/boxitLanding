@@ -7,11 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	try {
 		
 		if (!isset($_POST['stripeToken'])) throw new Exception("The Stripe Token was not generated correctly");
-		
 		$charge = \Stripe\Charge::create(array(
 			'source'	=> $_POST['stripeToken'],
 			'amount'	=> 1999,
-			'currency'	=> 'usd'
+			'currency'	=> 'usd',
+			"description" => "Example charge"
 			));
 
 	} catch (Exception $e) {
@@ -28,4 +28,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 } 
 
-require_once('./footer.php');
+// require_once('./footer.php');

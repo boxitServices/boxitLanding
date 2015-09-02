@@ -447,18 +447,18 @@
                         <p class="smallP">Secure &amp; organize everything digital.</p>
                         <br/>
                     <!-- STRIPE: $19.99 -->
+                        <form id="payment-form" method="POST" action="./buyStart.php">
                         <span class="payment-errors"></span>
-                        <form id="payment-form" action="charge.php" method="post" >
                           <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+                            data-key="<?php echo $stripe['publishable_key']; ?>"
                             data-amount="1999"
                             data-name="Sign up"
-                            data-description="BoxIT Start ($19.99)"
+                            data-description="BoxIT Start ($19.99)">
                           </script>
                         </form>
-
                     </div>
+
                     <div class="col-sm-4">
                         <img src="assets/images/moonlight.png" alt="moonlight" height="60px" width="auto">
                         <br/>
@@ -475,17 +475,18 @@
                         </p>
                         <br/>
                     <!-- STRIPE: $99.99 -->
-                        <form action="charge.php" method="post" id="payment-form">
+                        <form id="payment-form" method="POST" action="./buyMoonlight.php">
+                        <span class="payment-errors"></span>
                           <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+                            data-key="<?php echo $stripe['publishable_key']; ?>"
                             data-amount="9999"
                             data-name="Sign up"
-                            data-description="BoxIT Start ($99.99)"
+                            data-description="BoxIT Start ($99.99)">
                           </script>
                         </form>
-
                     </div>
+
                     <div class="col-sm-4">
                         <img src="assets/images/rocket.png" alt="rocket" height="60px" width="auto">
                         <br/>
