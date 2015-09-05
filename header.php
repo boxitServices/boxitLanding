@@ -102,7 +102,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-main-collapse">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#page-top">
+                    <a class="navbar-brand page-scroll" href="./header.php">
                         <span class="light">
                             Box
                         </span>
@@ -116,7 +116,6 @@
                     <!-- NAV LINKS -->
                     <ul class="nav navbar-nav">
                         <li class="hidden">
-                            <a href="index.html"></a>
                         </li>
                         <li>
                             <a class="page-scroll" href="tel:[(888)289-6385]"><strong>(888) 289-6385</strong></a>
@@ -589,7 +588,7 @@
                         <br/>
                         <h5>David <strong>Campos</strong></h5>
                         <h6>
-                            PRODUCT
+                            SPECIAL PROJECTS
                         </h6>
                     </div>
                     <div class="col-sm-3">
@@ -709,14 +708,14 @@
                         </a>
                 </div>
                 <div class="col-sm-2">
-                    <a href="">
+                    <a href="careers.html">
                         <h5>
                             Careers
                         </h5>
                     </a>
                 </div>
                 <div class="col-sm-2">
-                    <a href="">
+                    <a href="company.html">
                         <h5>
                             Company
                         </h5>
@@ -735,7 +734,7 @@
             <br/>
             <div>
 				<h6 class="center">
-					&copy; 2015 <a href="index.html">BOX <img id="boxlogo" src="assets/images/box.png" alt="box" height="30px" width="auto"> IT, LLC</a>. All Rights Reserved.
+					&copy; 2015 <a href="header.php">BOX <img id="boxlogo" src="assets/images/box.png" alt="box" height="30px" width="auto"> IT, LLC</a>. All Rights Reserved.
 				</h6>
 			</div>
             <br/><br/><br/>
